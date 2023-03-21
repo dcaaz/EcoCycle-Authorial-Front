@@ -1,20 +1,11 @@
 import styled from "styled-components";
 import colors from "../StandardColors.js";
 
-export const Click = styled.div`
-  margin-left: 30px;
-  img{
-        width: 30%;
-        min-width: 200px;
-        max-width: 300px;
-    }
-`
-
 export const Logo = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 5%;
+    margin-top: 5px;
     img{
         width: 30%;
         min-width: 200px;
@@ -73,5 +64,12 @@ export const Footer = styled.div`
         font-weight: 400;
         font-size: 19px;
         line-height: 17px;  
+    }
+`
+
+export const Click = styled.div`
+  margin-top: 70px;
+  img{
+        width: 250px;
     }
 `

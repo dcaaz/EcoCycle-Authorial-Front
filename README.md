@@ -1,70 +1,16 @@
-# Getting Started with Create React App
+# Bem-vindo ao meu primeiro projeto autoral: EcoCycle 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+"EcoCycle" - uma junção das palavras "Eco" (referente ao meio ambiente e sustentabilidade) e "Cycle" (ciclo, referente ao ciclo de vida dos materiais que podem ser reciclados). 
 
-## Available Scripts
+Transforme lixo em vida: Recicle com o aplicativo!
 
-In the project directory, you can run:
+## `Motivação`
 
-### `npm start`
+A ideia surgiu com o intuito de solucionar um problema. Moro numa região onde a coleta de reciclável passa uma vez por semana e infelizmente esse compromisso às vezes é falho. Vale ressaltar que resido num bairro ‘popular’ de Florianópolis, imagino que em zonas periféricas a situação seja ainda mais desordenada. Para condôminos, percebo que existe uma 'facilidade'/impulso maior em reciclar, pois há lixeiras com separação de acordo com materiais e a própria administração do condomínio costuma comprometer-se a direcionar os conteúdos das lixeiras. Para quem mora em casa, o cenário é outro, pois ao acumular uma quantidade considerável de plástico, por exemplo, as escapatórias são: esperar a coleta seletiva de recicláveis passar, aguarda algum catador de material reciclável aparecer pela rua ou jogar no lixo ‘comum’; sendo a última opção a realidade de muitos.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Quero deixar registrado que a ideia central não é criticar o sistema público e/ou substituir a atividade do mesmo, até porque a demanda do setor é gigantesca e `nunca estamos isentos de fazer o nosso melhor também`. O intuito único e exclusivo é: criar uma nova possibilidade para quem quer reciclar, otimizando o trabalho dos catadores e ONGs, através da conscientização sobre a importância do ato e ‘conexão’ entre os dois lados: quem quer reciclar versos quem depende da reciclagem para viver (e quem sabe, incentivar um futuro melhor?).  
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## `Tecnologias Usadas`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- React

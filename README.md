@@ -14,3 +14,6 @@ Quero deixar registrado que a ideia central não é criticar o sistema público 
 ## `Tecnologias Usadas`
 
 - React
+- React-router-dom
+- Styled-components
+- Axios

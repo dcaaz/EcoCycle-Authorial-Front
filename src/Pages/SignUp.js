@@ -1,21 +1,35 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import logo from "../Image/logo.png";
-import { Footer, Logo, Input, Button, Click } from "../Style/Constant/Index.js"
+import logo from "../Images/logo.png";
+import { Footer, Logo, Input, Button, Click } from "../Style/Constant/Index.js";
+import { signUp } from "../Services/UserApi";
+import { toast } from 'react-toastify';
 
 export default function SignUpPage() {
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
-    const [name, setName] = useState();
-    const [cep, setCep] = useState();
-    const [address, setAddress] = useState();
-    const [reference, setReference] = useState();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [disabled, setDisabled] = useState(false);
     const navigate = useNavigate();
 
-    function login() {
-        setDisabled(true);
-        navigate("/");
+    function submit() {
+        if (password !== confirmPassword) {
+            console.log(password, confirmPassword);
+           /*  toast('As senhas devem ser iguais!');
+            console.log("cheguei aqui"); */
+        } else {
+            console.log("deu erro");
+            /* try {
+                setDisabled(true);
+                await signUp(email, password);
+                toast('Inscrito com sucesso! Por favor, faça login.');
+                navigate('/');
+                console.log("cheguei aqui 2");
+            } catch (error) {
+                console.log("error signUp", error);
+                toast('Não foi possível fazer o cadastro!');
+            } */
+        }
     }
 
     return (
@@ -24,7 +38,7 @@ export default function SignUpPage() {
                 <img src={logo} alt="logo" />
             </Logo>
 
-            <form onSubmit={login}>
+            <form onSubmit={submit}>
                 <Input>
                     <input
                         type="email"
@@ -47,44 +61,15 @@ export default function SignUpPage() {
                 </Input>
                 <Input>
                     <input
-                        type="text"
-                        placeholder=" nome"
-                        onChange={(e) => setName(e.target.value)}
-                        value={name}
+                        type="password"
+                        placeholder=" confirme a senha"
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        value={confirmPassword}
                         required
                         disabled={disabled}
                     />
                 </Input>
-                <Input>
-                    <input
-                        type="number"
-                        placeholder=" cep"
-                        onChange={(e) => setCep(e.target.value)}
-                        value={cep}
-                        required
-                        disabled={disabled}
-                    />
-                </Input>
-                <Input>
-                    <input
-                        type="text"
-                        placeholder=" endereço"
-                        onChange={(e) => setAddress(e.target.value)}
-                        value={address}
-                        required
-                        disabled={disabled}
-                    />
-                </Input>
-                <Input>
-                    <input
-                        type="text"
-                        placeholder=" ponto de referência"
-                        onChange={(e) => setReference(e.target.value)}
-                        value={reference}
-                        required
-                        disabled={disabled}
-                    />
-                </Input>
+
                 <Button>
                     <button
                         type="submit"

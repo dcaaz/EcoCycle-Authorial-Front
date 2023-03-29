@@ -3,7 +3,6 @@ import { useNavigate, Link } from "react-router-dom";
 import logo from "../Images/logo.png";
 import { Footer, Logo, Input, Button, Click } from "../Style/Constant/Index.js";
 import { signUp } from "../Services/UserApi";
-import { toast } from 'react-toastify';
 
 export default function SignUpPage() {
     const [email, setEmail] = useState("");
@@ -12,23 +11,21 @@ export default function SignUpPage() {
     const [disabled, setDisabled] = useState(false);
     const navigate = useNavigate();
 
-    function submit() {
+    async function submit(event) {
+        event.preventDefault();
         if (password !== confirmPassword) {
-            console.log(password, confirmPassword);
-           /*  toast('As senhas devem ser iguais!');
-            console.log("cheguei aqui"); */
+            alert('As senhas devem ser iguais!');
         } else {
-            console.log("deu erro");
-            /* try {
+           try {
                 setDisabled(true);
-                await signUp(email, password);
-                toast('Inscrito com sucesso! Por favor, faça login.');
+                const data = await signUp(email, password);
+                console.log("data", data)
                 navigate('/');
                 console.log("cheguei aqui 2");
             } catch (error) {
                 console.log("error signUp", error);
-                toast('Não foi possível fazer o cadastro!');
-            } */
+                alert('Não foi possível fazer o cadastro!');
+            }
         }
     }
 

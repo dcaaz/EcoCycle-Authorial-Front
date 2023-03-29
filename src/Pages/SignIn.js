@@ -6,7 +6,7 @@ import { Footer, Logo, Input, Button, Click } from "../Style/Constant/Index.js"
 import { toast } from 'react-toastify';
 
 export default function SignInPage() {
-   /*  const [email, setEmail] = useState();
+    const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [disabled, setDisabled] = useState(false);
     const navigate = useNavigate();
@@ -68,5 +68,5 @@ export default function SignInPage() {
 
             <Click> <img src={click} alt="logo" /></Click>
         </>
-    ) */
+    )
 }

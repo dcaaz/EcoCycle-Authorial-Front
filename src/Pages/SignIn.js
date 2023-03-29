@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import logo from "../Images/logo.png";
 import click from "../Images/click.png";
 import { Footer, Logo, Input, Button, Click } from "../Style/Constant/Index.js"
-import { toast } from 'react-toastify';
+import { signIn } from "../Services/UserApi";
 
 export default function SignInPage() {
     const [email, setEmail] = useState();
@@ -13,13 +13,15 @@ export default function SignInPage() {
 
     async function submit(event) {
         event.preventDefault();
-
         try {
-            //await signIn(email, password);
-            toast('Login realizado com sucesso!');
+            setDisabled(true);
+            console.log("cheguei");
+            console.log(email, password)
+            await signIn(email, password);
             navigate('/dashboard');
         } catch (err) {
-            toast('Não foi possível fazer o login!');
+            setDisabled(false);
+            alert('Não foi possível fazer o login!');
         }
     }
 

@@ -18,11 +18,10 @@ export default function SignUpPage() {
         } else {
            try {
                 setDisabled(true);
-                const data = await signUp(email, password);
-                console.log("data", data)
+                await signUp(email, password);
                 navigate('/');
-                console.log("cheguei aqui 2");
             } catch (error) {
+                setDisabled(false);
                 console.log("error signUp", error);
                 alert('Não foi possível fazer o cadastro!');
             }

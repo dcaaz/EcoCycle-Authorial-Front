@@ -6,8 +6,6 @@ export async function signUp(email, password) {
 }
 
 export async function signIn(email, password) {
-  console.log("cheguei");
   const response = await api.post('/signin', { email, password });
-  console.log("response", response);
   return response.data;
 }

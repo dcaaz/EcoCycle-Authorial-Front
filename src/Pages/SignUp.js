@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../Images/logo.png";
-import { Footer, Logo, Input, Button, Click } from "../Style/Constant/Index.js";
+import { Footer, Logo, Input, Button } from "../Style/Constant/Index.js";
 import { signUp } from "../Services/UserApi";
 
 export default function SignUpPage() {

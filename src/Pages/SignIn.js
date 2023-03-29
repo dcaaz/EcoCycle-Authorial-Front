@@ -1,23 +1,24 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../Images/logo.png";
 import click from "../Images/click.png";
 import { Footer, Logo, Input, Button, Click } from "../Style/Constant/Index.js"
 import { signIn } from "../Services/UserApi";
+import { AuthContext } from "../Context/Auth";
 
 export default function SignInPage() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [disabled, setDisabled] = useState(false);
+    const { setToken } = useContext(AuthContext);
     const navigate = useNavigate();
 
     async function submit(event) {
         event.preventDefault();
         try {
             setDisabled(true);
-            console.log("cheguei");
-            console.log(email, password)
-            await signIn(email, password);
+            const token = await signIn(email, password);
+            setToken(token);
             navigate('/dashboard');
         } catch (err) {
             setDisabled(false);

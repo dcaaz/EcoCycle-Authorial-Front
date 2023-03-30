@@ -4,6 +4,7 @@ import SignUpPage from "./Pages/SignUp";
 import GlobalStyle from "./GlobalStyle";
 import AuthProvider from "./Context/Auth";
 import DashboardPage from "./Pages/Dashboard";
+import AdressPage from "./Pages/Adress";
 
 function App() {
   return (
@@ -11,9 +12,10 @@ function App() {
       <GlobalStyle />
       <AuthProvider>
         <Routes>
-          <Route path="/" element={<SignInPage />}></Route>
-          <Route path="/up" element={<SignUpPage />}></Route>
-          <Route path="/dashboard" element={<DashboardPage />}></Route>
+          <Route path="/" element={<DashboardPage />}></Route>
+          <Route path="/signin" element={<SignInPage />}></Route>
+          <Route path="/signup" element={<SignUpPage />}></Route>
+          <Route path="/adress" element={<AdressPage />}></Route>
         </Routes>
       </AuthProvider>
     </BrowserRouter>

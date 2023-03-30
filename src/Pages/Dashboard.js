@@ -1,7 +1,7 @@
-import styled from "styled-components";
 import trash from "../Images/trash.png";
 import people from "../Images/people.png";
-import community from "../Images/community.png"
+import { Link } from "react-router-dom";
+import { Div, Text, ButtonDash } from "../Style/Constant/Dashboard-style";
 
 export default function DashboardPage() {
     return (
@@ -25,9 +25,9 @@ export default function DashboardPage() {
                         quem depende da reciclagem para viver (e quem sabe, incentivar um futuro melhor?).
                     </h2>
                 </Text>
-                <image>
+                <div>
                     <img width={300} src={trash} alt="Trash" />
-                </image>
+                </div>
             </Div>
             <Div color="#000000">
                 <Text font="#FFFFFF">
@@ -49,38 +49,15 @@ export default function DashboardPage() {
                         independente do cenário, nunca estamos isentos de fazer o nosso melhor.
                     </h2>
                 </Text>
-                <image>
+                <div>
                     <img width={400} src={people} alt="Trash" />
-                </image>
+                </div>
             </Div>
+            <ButtonDash>
+                <Link to="/signin">
+                    <button>Comece agora</button>
+                </Link>
+            </ButtonDash>
         </>
     )
 }
-
-const Div = styled.div`
-    background-color: ${props => props.color}; //passar para base
-    padding: 16px;
-    height: 300px;
-    display: flex;
-`
-
-const Text = styled.div`
-    width: 60%;
-    margin-left: 200px;
-    color: ${props => props.font};
-    font-family: 'IBM Plex Sans', sans-serif;
-    h1{
-        font-weight: 600;
-        font-size: 50px;
-        margin-bottom: 20px;
-    }
-    h2{
-        font-weight: 200;
-        font-size: 25px;
-        max-width: 80%;
-    }
-    h3{
-        font-weight: 300;
-        font-size: 50px;
-    }
-`

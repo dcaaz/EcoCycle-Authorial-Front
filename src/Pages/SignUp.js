@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../Images/logo.png";
-import { Footer, Logo, Input, Button } from "../Style/Constant/Index.js";
+import { Footer, Input, Button, All } from "../Style/Constant/User-Style.js";
 import { signUp } from "../Services/UserApi";
 
 export default function SignUpPage() {
@@ -16,7 +16,7 @@ export default function SignUpPage() {
         if (password !== confirmPassword) {
             alert('As senhas devem ser iguais!');
         } else {
-           try {
+            try {
                 setDisabled(true);
                 await signUp(email, password);
                 navigate('/');
@@ -29,10 +29,10 @@ export default function SignUpPage() {
     }
 
     return (
-        <>
-            <Logo>
-                <img src={logo} alt="logo" />
-            </Logo>
+        <All>
+            <div>
+                <img width={350} src={logo} alt="logo" />
+            </div>
 
             <form onSubmit={submit}>
                 <Input>
@@ -77,10 +77,10 @@ export default function SignUpPage() {
             </form>
 
             <Footer>
-                <Link to="/">
+                <Link to="/signin">
                     <h1>Já tem uma conta? Entre!</h1>
                 </Link>
             </Footer>
-        </>
+        </All>
     )
 }

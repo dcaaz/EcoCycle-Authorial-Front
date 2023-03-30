@@ -1,24 +1,24 @@
 import styled from "styled-components";
 import colors from "../StandardColors.js";
 
-export const Logo = styled.div`
+export const All = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 5px;
-    img{
-        width: 30%;
-        min-width: 200px;
-        max-width: 320px;
+    flex-direction: column;
+    margin-top: 80px;
+    h4{
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-weight: 600;
+        font-size: 30px;
+        margin-bottom: 20px;
+        color: ${colors.base};
     }
 `
 
 export const Input = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
     input {
-        width: 30%;
+        width: 500px;
         min-width: 325px;
         height: 45px;  
         border-radius: 5px;
@@ -27,7 +27,7 @@ export const Input = styled.div`
         margin-bottom: 6px;
     }
     input::placeholder{
-        color: #DBDBDB;
+        color: #808080;
         font-weight: 400;
         font-size: 19.98px;
         line-height: 25px;
@@ -35,14 +35,11 @@ export const Input = styled.div`
 `
 
 export const Button = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin-bottom: 20px;
     margin-top: 20px;
     button {
         background-color: ${colors.base};
-        width: 25%;
+        width: 510px;
         min-width: 330px;
         height: 45px;  
         border-radius: 4.64px;
@@ -53,9 +50,6 @@ export const Button = styled.div`
 `
 
 export const Footer = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
     vertical-align: top;
     vertical-align: #52B6FF;
     h1{
@@ -64,12 +58,5 @@ export const Footer = styled.div`
         font-weight: 400;
         font-size: 19px;
         line-height: 17px;  
-    }
-`
-
-export const Click = styled.div`
-  margin-top: 70px;
-  img{
-        width: 250px;
     }
 `

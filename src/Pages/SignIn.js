@@ -1,14 +1,13 @@
 import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../Images/logo.png";
-import click from "../Images/click.png";
-import { Footer, Logo, Input, Button, Click } from "../Style/Constant/Index.js"
+import { Footer, Input, Button, All } from "../Style/Constant/User-Style.js"
 import { signIn } from "../Services/UserApi";
 import { AuthContext } from "../Context/Auth";
 
 export default function SignInPage() {
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [disabled, setDisabled] = useState(false);
     const { setToken } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -19,7 +18,7 @@ export default function SignInPage() {
             setDisabled(true);
             const token = await signIn(email, password);
             setToken(token);
-            navigate('/dashboard');
+            navigate('/enrollment');
         } catch (err) {
             setDisabled(false);
             alert('Não foi possível fazer o login!');
@@ -27,10 +26,10 @@ export default function SignInPage() {
     }
 
     return (
-        <>
-            <Logo>
-                <img src={logo} alt="logo" />
-            </Logo>
+        <All>
+            <div>
+                <img width={350} src={logo} alt="logo" />
+            </div>
 
             <form onSubmit={submit}>
                 <Input>
@@ -64,12 +63,10 @@ export default function SignInPage() {
             </form>
 
             <Footer>
-                <Link to="/up">
+                <Link to="/signup">
                     <h1>Não tem uma conta? Cadastre-se!</h1>
                 </Link>
             </Footer>
-
-            <Click> <img src={click} alt="logo" /></Click>
-        </>
+        </All>
     )
 }

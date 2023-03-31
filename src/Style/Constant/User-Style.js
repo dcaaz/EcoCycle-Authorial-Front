@@ -49,6 +49,23 @@ export const Button = styled.div`
     }
 `
 
+export const Choices = styled.div`
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+`
+
+export const Choice = styled.button`
+    background-color: #808080;
+    width: 210px;
+    min-width: 100px;
+    height: 45px;  
+    border-radius: 4.64px;
+    border-style: none;
+    color: #FFFFFF;
+    font-size: 19px;
+`
+
 export const Footer = styled.div`
     vertical-align: top;
     vertical-align: #52B6FF;

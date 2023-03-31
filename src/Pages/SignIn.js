@@ -18,7 +18,7 @@ export default function SignInPage() {
             setDisabled(true);
             const token = await signIn(email, password);
             setToken(token);
-            navigate('/enrollment');
+            navigate('/adress');
         } catch (err) {
             setDisabled(false);
             alert('Não foi possível fazer o login!');

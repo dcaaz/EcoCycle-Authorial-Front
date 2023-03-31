@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Input, All, Button } from "../Style/Constant/User-Style";
+import { Input, All, Button, Choice, Choices } from "../Style/Constant/User-Style";
 import { adress } from "../Services/Adress";
+import { useNavigate } from "react-router-dom";
 
 export default function AdressPage() {
     const [name, setName] = useState("");
@@ -12,31 +13,9 @@ export default function AdressPage() {
     const [neighborhood, setNeighborhood] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
+    const [profile, setProfile] = useState("");
     const [disabled, setDisabled] = useState(false);
-
-    async function submit(event) {
-        event.preventDefault();
-        try {
-            setDisabled(true);
-            const adressUser = {
-                name,
-                cep,
-                street,
-                number,
-                complement,
-                reference,
-                city,
-                state,
-                neighborhood
-            }
-            await adress(adressUser);
-            //navigate('/dashboard');
-        } catch (error) {
-            setDisabled(false);
-            console.log("error Adress", error);
-            alert('Não foi possível fazer o cadastro do endereço!');
-        }
-    }
+    const navigate = useNavigate();
 
     function checkCEP(e) {
         const cepUser = e.target.value.replace(/\D+/g, ' '); //DO: regex substituido tudo
@@ -44,17 +23,53 @@ export default function AdressPage() {
         fetch(`https://viacep.com.br/ws/${cepUser}/json/`)
             .then(res => res.json()) //converte para json
             .then(data => {
-                console.log(data);
-                setStreet(data.logradouro);
-                setNeighborhood(data.bairro);
-                setCity(data.localidade);
-                setState(data.uf)
+                if (data.erro === true) {
+                    return alert("Insira um CEP válido");
+                } else {
+                    console.log("data", data);
+                    setStreet(data.logradouro);
+                    setNeighborhood(data.bairro);
+                    setCity(data.localidade);
+                    setState(data.uf);
+                }
             })
             .catch(error => {
                 if (error === true) {
                     alert("Insira um CEP válido");
                 }
             })
+    }
+
+    function recyclable(r) {
+        if (r === 1) {
+            setProfile("reciclar");
+        } else {
+            setProfile("coletar");
+        }
+    }
+
+    async function submit(event) {
+        event.preventDefault();
+        const adressUser = {
+            name,
+            cep,
+            street,
+            number,
+            complement,
+            reference,
+            city,
+            state,
+            neighborhood,
+            profile
+        }
+        try {
+            setDisabled(true);
+            await adress(adressUser);
+            navigate('/dashboard');
+        } catch (error) {
+            setDisabled(false);
+            alert('Não foi possível fazer o cadastro do endereço!');
+        }
     }
 
     return (
@@ -152,6 +167,14 @@ export default function AdressPage() {
                         disabled={disabled}
                     />
                 </Input>
+                <Choices>
+                    <Choice onClick={() => recyclable(1)}>
+                        <h1>quero reciclar</h1>
+                    </Choice>
+                    <Choice onClick={() => recyclable(2)}>
+                        <h1>quero coletar</h1>
+                    </Choice>
+                </Choices>
                 <Button>
                     <button
                         type="submit"

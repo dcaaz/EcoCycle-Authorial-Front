@@ -1,4 +1,4 @@
-import api from './Api';
+//import api from './Api';
 
 export async function adress(adressUser) {
     console.log("AdressUser", adressUser);

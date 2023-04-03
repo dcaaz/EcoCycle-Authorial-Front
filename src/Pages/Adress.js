@@ -180,7 +180,7 @@ export default function AdressPage() {
                         type="submit"
                         disabled={disabled}
                     >
-                        <h1>cadastrar endereço</h1>
+                        <h1>confirmar dados</h1>
                     </button>
                 </Button>
             </form>

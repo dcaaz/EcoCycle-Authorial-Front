@@ -4,22 +4,37 @@ import logo from "../Images/logo.png";
 import { Footer, Input, Button, All } from "../Style/Constant/User-Style.js"
 import { signIn } from "../Services/UserApi";
 import { AuthContext } from "../Context/Auth";
+import { ceps } from "../Services/Adress";
 
 
 export default function SignInPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [disabled, setDisabled] = useState(false);
-    const { setToken } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    const {
+        token,
+        setToken,
+        setPoints
+    } = useContext(AuthContext);
 
     async function submit(event) {
         event.preventDefault();
         try {
             setDisabled(true);
-            const token = await signIn(email, password);
-            setToken(token);
-            navigate('/adress');
+            const data = await signIn(email, password);
+            console.log("Data", data.token)
+            setToken(data.token);
+
+            if (data.adress === true) {
+                navigate('/adress');
+            } else {
+                console.log("false");
+                const data = await ceps(token);
+                //setPoints();
+                //navigate('/maps');
+            }
         } catch (err) {
             setDisabled(false);
             alert('Não foi possível fazer o login!');

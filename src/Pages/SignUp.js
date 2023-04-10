@@ -19,7 +19,7 @@ export default function SignUpPage() {
             try {
                 setDisabled(true);
                 await signUp(email, password);
-                navigate('/');
+                navigate('/signin');
             } catch (error) {
                 setDisabled(false);
                 console.log("error signUp", error);

@@ -30,7 +30,7 @@ export default function MapsPage() {
 
      const ceps = ["88111350", "41620840"];
 
-    useEffect(() => {
+  /*   useEffect(() => {
 
         ceps.map((c) => {
             console.log("C", c)
@@ -49,7 +49,7 @@ export default function MapsPage() {
             })
         })
     }, []);
-
+ */
     console.log("markers", markers);
 
     const containerStyle = {

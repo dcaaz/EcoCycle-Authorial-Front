@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Input, All, Button, Choice, Choices } from "../Style/Constant/User-Style";
 import { adress } from "../Services/Adress";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../Context/Auth";
+
 
 export default function AdressPage() {
     const [name, setName] = useState("");
@@ -17,8 +19,10 @@ export default function AdressPage() {
     const [disabled, setDisabled] = useState(false);
     const navigate = useNavigate();
 
+    const { token } = useContext(AuthContext);
+
     function checkCEP(e) {
-        const cepUser = e.target.value.replace(/\D+/g, ' '); //DO: regex substituido tudo
+        const cepUser = e.target.value.replace(/\D+/g, ' '); //DO: regex substitui tudo
         console.log("CEP", cepUser);
         fetch(`https://viacep.com.br/ws/${cepUser}/json/`)
             .then(res => res.json()) //converte para json
@@ -50,24 +54,32 @@ export default function AdressPage() {
 
     async function submit(event) {
         event.preventDefault();
-        const adressUser = {
+        //DO profile vazio e botão de quero reciclar/coletar enviando dados
+        /* 
+                if (profile.length === 0) {
+                    return alert("Selecione uma das duas opções!")
+                } else { */
+        const body = {
             name,
-            cep,
+            cep: parseInt(cep),
             street,
-            number,
-            complement,
+            number: parseInt(number),
+            complement: complement[0].toUpperCase() + complement.substring(1),
             reference,
             city,
             state,
             neighborhood,
             profile
         }
+
         try {
+            console.log("cheguei aqui")
             setDisabled(true);
-            await adress(adressUser);
+            await adress(body, token);
             navigate('/dashboard');
         } catch (error) {
             setDisabled(false);
+            console.log("erro Adress", error);
             alert('Não foi possível fazer o cadastro do endereço!');
         }
     }

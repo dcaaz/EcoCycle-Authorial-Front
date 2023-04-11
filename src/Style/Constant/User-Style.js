@@ -68,17 +68,16 @@ export const Choices = styled.div`
     justify-content: space-around;
 `
 
-export const Choice = styled.button`
-    background-color: #808080;
-    width: 210px;
-    height: 45px;  
-    border-radius: 4.64px;
-    border-style: none;
-    color: #FFFFFF;
-    font-size: 19px;
-    @media (max-width: 900px){
-        width: 150px;
-        }
+export const Choice = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  h1{
+    color: #808080;
+    font-weight: 400;
+    font-size: 19.98px;
+    line-height: 25px;
+  }
 `
 
 export const Footer = styled.div`

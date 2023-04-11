@@ -6,29 +6,12 @@ import { AuthContext } from '../Context/Auth';
 
 
 export default function MapsPage() {
-    const [markers, setMarkers] = useState([])
+    const [markers, setMarkers] = useState([]);
+    const { points } = useContext(AuthContext);
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY
     })
-
-    const { points } = useContext(AuthContext);
-
-
-    /*  Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
- 
-     ceps.map(async cep => {
-         Geocode.fromAddress(cep).then(
-             (response) => {
-                 const { lat, lng } = response.results[0].geometry.location;
-                 setMarkers([...markers, { lat, lng }]);
-             },
-             (error) => {
-                 console.error(error);
-             }
-         );
-     })
-     */
 
     const containerStyle = {
         width: "100vw",
@@ -40,29 +23,19 @@ export default function MapsPage() {
         lng: -48.622699337379494
     };
 
-    console.log("markers", markers)
-    console.log("Points", points);
-
     useEffect(() => {
         points.map((c) => {
-            console.log("C", c.cep)
             const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${c.cep}&key=${process.env.REACT_APP_GOOGLE_API_KEY}`
 
             const promise = axios.get(url);
 
             promise.then((res) => {
-                console.log("Deu certo", res.data.results[0].geometry.location);
-                const teste = {location: res.data.results[0].geometry.location, name: c.name};
+                const teste = { location: res.data.results[0].geometry.location, name: c.name };
                 setMarkers((marker) => [...marker, teste]);
-                if (res) {
-                    return console.log("Deu certo");
-                }
             })
 
             promise.catch((err) => {
-                if (err) {
-                    return console.log("Deu errado");
-                }
+                console.log("Deu errado");
             })
         })
     }, [points]);

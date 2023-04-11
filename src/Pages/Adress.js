@@ -4,6 +4,7 @@ import { adress, ceps } from "../Services/AdressApi";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/Auth";
 import Swal from "sweetalert2";
+import { Switch } from "@mui/material";
 
 export default function AdressPage() {
     const [name, setName] = useState("");
@@ -15,11 +16,12 @@ export default function AdressPage() {
     const [neighborhood, setNeighborhood] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
-    const [profile, setProfile] = useState("");
+    const [profile, setProfile] = useState(false);
     const [disabled, setDisabled] = useState(false);
     const navigate = useNavigate();
 
     const { token, setPoints } = useContext(AuthContext);
+    console.log("profile", profile);
 
     function checkCEP(e) {
         const cepUser = e.target.value.replace(/\D+/g, ' '); //DO: regex substitui tudo
@@ -52,14 +54,6 @@ export default function AdressPage() {
                     })
                 }
             })
-    }
-
-    function recyclable(r) {
-        if (r === 1) {
-            setProfile("reciclar");
-        } else {
-            setProfile("coletar");
-        }
     }
 
     async function submit(event) {
@@ -199,15 +193,22 @@ export default function AdressPage() {
                     />
                 </Input>
                 <Choices>
-                    <Choice
-                        onClick={() => recyclable(1)}
-                        type='button'>
-                        <h1>quero reciclar</h1>
+                    <Choice>
+                        <h1>desejo reciclar</h1>
+                        <Switch
+                            checked={profile}
+                            onChange={e => setProfile(e.target.checked)}
+                            defaultChecked
+                            color="warning"
+                        />
                     </Choice>
-                    <Choice
-                        onClick={() => recyclable(2)}
-                        type='button'>
-                        <h1>quero coletar</h1>
+                    <Choice>
+                        <h1>desejo coletar</h1>
+                        <Switch
+                            checked={!profile}
+                            onChange={e => setProfile(!e.target.checked)}
+                            color="warning"
+                        />
                     </Choice>
                 </Choices>
                 <Button>

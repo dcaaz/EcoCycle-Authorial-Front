@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { Input, All, Button, Choice, Choices } from "../Style/Constant/User-Style";
-import { adress } from "../Services/Adress";
+import { adress, ceps } from "../Services/Adress";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/Auth";
 
@@ -19,18 +19,16 @@ export default function AdressPage() {
     const [disabled, setDisabled] = useState(false);
     const navigate = useNavigate();
 
-    const { token } = useContext(AuthContext);
+    const { token, setPoints } = useContext(AuthContext);
 
     function checkCEP(e) {
         const cepUser = e.target.value.replace(/\D+/g, ' '); //DO: regex substitui tudo
-        console.log("CEP", cepUser);
         fetch(`https://viacep.com.br/ws/${cepUser}/json/`)
             .then(res => res.json()) //converte para json
             .then(data => {
                 if (data.erro === true) {
                     return alert("Insira um CEP válido");
                 } else {
-                    console.log("data", data);
                     setStreet(data.logradouro);
                     setNeighborhood(data.bairro);
                     setCity(data.localidade);
@@ -73,13 +71,13 @@ export default function AdressPage() {
         }
 
         try {
-            console.log("cheguei aqui")
             setDisabled(true);
             await adress(body, token);
-            navigate('/dashboard');
+            const data = await ceps(token);
+            setPoints(data);
+            navigate('/maps');
         } catch (error) {
             setDisabled(false);
-            console.log("erro Adress", error);
             alert('Não foi possível fazer o cadastro do endereço!');
         }
     }

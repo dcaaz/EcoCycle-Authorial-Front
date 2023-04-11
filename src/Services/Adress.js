@@ -13,7 +13,7 @@ export async function adress(body, token) {
 
 export async function ceps(token) {
   console.log("cheguei em ceps");
-  const response = await api.get('/adress/ceps', {
+  const response = await api.get('/adress/cep', {
     headers: {
       Authorization: `Bearer ${token}`,
     },

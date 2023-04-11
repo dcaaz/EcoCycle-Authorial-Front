@@ -1,17 +1,26 @@
 import { GoogleMap, useJsApiLoader, MarkerF } from '@react-google-maps/api';
 import styled from 'styled-components';
 import { All } from '../Style/Constant/User-Style';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { AuthContext } from '../Context/Auth';
+
 
 export default function MapsPage() {
-
     const [markers, setMarkers] = useState([]);
 
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY
     })
+
+    const {
+        token,
+        setToken,
+        setPoints,
+        points
+    } = useContext(AuthContext);
+
 
     /*  Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
  
@@ -29,8 +38,8 @@ export default function MapsPage() {
      */
 
      const ceps = ["88111350", "41620840"];
-
-  /*   useEffect(() => {
+/* 
+   useEffect(() => {
 
         ceps.map((c) => {
             console.log("C", c)
@@ -48,9 +57,8 @@ export default function MapsPage() {
                 console.log("Deu errado", err)
             })
         })
-    }, []);
- */
-    console.log("markers", markers);
+    }, []); */
+
 
     const containerStyle = {
         width: "100vw",

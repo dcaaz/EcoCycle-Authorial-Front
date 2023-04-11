@@ -24,16 +24,14 @@ export default function SignInPage() {
         try {
             setDisabled(true);
             const data = await signIn(email, password);
-            console.log("Data", data.token)
             setToken(data.token);
 
             if (data.adress === true) {
                 navigate('/adress');
             } else {
-                console.log("false");
                 const data = await ceps(token);
-                //setPoints();
-                //navigate('/maps');
+                setPoints(data);
+                navigate('/maps');
             }
         } catch (err) {
             setDisabled(false);

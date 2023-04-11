@@ -18,3 +18,4 @@ Quero deixar registrado que a ideia central não é criticar o sistema público 
 - Styled-components
 - Axios
 - React-google-maps
+- Framer-motion

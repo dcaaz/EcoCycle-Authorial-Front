@@ -21,7 +21,6 @@ export default function AdressPage() {
     const navigate = useNavigate();
 
     const { token, setPoints } = useContext(AuthContext);
-    console.log("profile", profile);
 
     function checkCEP(e) {
         const cepUser = e.target.value.replace(/\D+/g, ' '); //DO: regex substitui tudo
@@ -58,13 +57,8 @@ export default function AdressPage() {
 
     async function submit(event) {
         event.preventDefault();
-        //DO profile vazio e botão de quero reciclar/coletar enviando dados
-        /* 
-                if (profile.length === 0) {
-                    return alert("Selecione uma das duas opções!")
-                } else { */
         const body = {
-            name,
+            name: name[0].toUpperCase() + name.substring(1),
             cep: parseInt(cep),
             street,
             number: parseInt(number),
@@ -196,17 +190,16 @@ export default function AdressPage() {
                     <Choice>
                         <h1>desejo reciclar</h1>
                         <Switch
-                            checked={profile}
-                            onChange={e => setProfile(e.target.checked)}
-                            defaultChecked
+                            checked={!profile}
+                            onChange={e => setProfile(!e.target.checked)}
                             color="warning"
                         />
                     </Choice>
                     <Choice>
                         <h1>desejo coletar</h1>
                         <Switch
-                            checked={!profile}
-                            onChange={e => setProfile(!e.target.checked)}
+                            checked={profile}
+                            onChange={e => setProfile(e.target.checked)}
                             color="warning"
                         />
                     </Choice>

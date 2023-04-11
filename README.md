@@ -19,3 +19,4 @@ Quero deixar registrado que a ideia central não é criticar o sistema público 
 - Axios
 - React-google-maps
 - Framer-motion
+- SweetAlert2

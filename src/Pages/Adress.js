@@ -3,7 +3,7 @@ import { Input, All, Button, Choice, Choices } from "../Style/Constant/User-Styl
 import { adress, ceps } from "../Services/Adress";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/Auth";
-
+import Swal from "sweetalert2";
 
 export default function AdressPage() {
     const [name, setName] = useState("");
@@ -24,10 +24,16 @@ export default function AdressPage() {
     function checkCEP(e) {
         const cepUser = e.target.value.replace(/\D+/g, ' '); //DO: regex substitui tudo
         fetch(`https://viacep.com.br/ws/${cepUser}/json/`)
-            .then(res => res.json()) //converte para json
+            .then(res => res.json())
             .then(data => {
                 if (data.erro === true) {
-                    return alert("Insira um CEP válido");
+                    Swal.fire({ //DO swal não funciona aqui
+                        position: 'top-end',
+                        icon: 'warning',
+                        title: "Insira uma CEP válido!",
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
                 } else {
                     setStreet(data.logradouro);
                     setNeighborhood(data.bairro);
@@ -37,7 +43,13 @@ export default function AdressPage() {
             })
             .catch(error => {
                 if (error === true) {
-                    alert("Insira um CEP válido");
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'warning',
+                        title: "Insira uma CEP válido!",
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
                 }
             })
     }

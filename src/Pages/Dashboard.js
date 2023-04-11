@@ -2,12 +2,8 @@ import trash from "../Images/trash.png";
 import people from "../Images/people.png";
 import { Link } from "react-router-dom";
 import { Div, Text, ButtonDash, Img } from "../Style/Constant/Dashboard-style";
-import { motion } from "framer-motion";
-import { useState } from "react";
 
 export default function DashboardPage() {
-    const [isOpen, setIsOpen] = useState(false);
-
     return (
         <>
             <Div color="#FDBC3B">

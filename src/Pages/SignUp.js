@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import logo from "../Images/logo.png";
 import { Footer, Input, Button, All, Img } from "../Style/Constant/User-Style.js";
 import { signUp } from "../Services/UserApi";
+import Swal from "sweetalert2";
 
 export default function SignUpPage() {
     const [email, setEmail] = useState("");
@@ -14,16 +15,27 @@ export default function SignUpPage() {
     async function submit(event) {
         event.preventDefault();
         if (password !== confirmPassword) {
-            alert('As senhas devem ser iguais!');
+            Swal.fire({
+                position: 'top-end',
+                icon: 'warning',
+                title: "As senhas não conferem!",
+                showConfirmButton: false,
+                timer: 2000
+            })
         } else {
             try {
                 setDisabled(true);
                 await signUp(email, password);
                 navigate('/signin');
-            } catch (error) {
+            } catch (err) {
                 setDisabled(false);
-                console.log("error signUp", error);
-                alert('Não foi possível fazer o cadastro!');
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'warning',
+                    title: (`${err.response.data}`),
+                    showConfirmButton: false,
+                    timer: 2000
+                })
             }
         }
     }

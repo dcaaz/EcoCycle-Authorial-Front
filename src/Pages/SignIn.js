@@ -5,6 +5,7 @@ import { Footer, Input, Button, All, Img } from "../Style/Constant/User-Style.js
 import { signIn } from "../Services/UserApi";
 import { AuthContext } from "../Context/Auth";
 import { ceps } from "../Services/Adress";
+import Swal from "sweetalert2";
 
 export default function SignInPage() {
     const [email, setEmail] = useState("");
@@ -34,7 +35,13 @@ export default function SignInPage() {
             }
         } catch (err) {
             setDisabled(false);
-            alert('Não foi possível fazer o login!');
+            Swal.fire({
+                position: 'top-end',
+                icon: 'warning',
+                title: (`${err.response.data}`),
+                showConfirmButton: false,
+                timer: 2000
+            })
         }
     }
 

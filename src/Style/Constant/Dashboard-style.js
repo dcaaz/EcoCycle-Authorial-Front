@@ -2,7 +2,7 @@ import styled from "styled-components";
 import colors from "../StandardColors.js";
 
 export const Div = styled.div`
-    background-color: ${props => props.color}; //passar para base
+    background-color: ${props => props.color};
     padding: 16px;
     display: flex;
 

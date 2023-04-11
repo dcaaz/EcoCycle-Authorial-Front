@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../Images/logo.png";
-import { Footer, Input, Button, All } from "../Style/Constant/User-Style.js";
+import { Footer, Input, Button, All, Img } from "../Style/Constant/User-Style.js";
 import { signUp } from "../Services/UserApi";
 
 export default function SignUpPage() {
@@ -30,9 +30,9 @@ export default function SignUpPage() {
 
     return (
         <All>
-            <div>
-                <img width={350} src={logo} alt="logo" />
-            </div>
+             <Img>
+                <img src={logo} alt="logo" />
+            </Img>
 
             <form onSubmit={submit}>
                 <Input>

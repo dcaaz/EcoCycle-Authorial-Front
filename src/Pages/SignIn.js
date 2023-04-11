@@ -1,11 +1,10 @@
 import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../Images/logo.png";
-import { Footer, Input, Button, All } from "../Style/Constant/User-Style.js"
+import { Footer, Input, Button, All, Img } from "../Style/Constant/User-Style.js"
 import { signIn } from "../Services/UserApi";
 import { AuthContext } from "../Context/Auth";
 import { ceps } from "../Services/Adress";
-
 
 export default function SignInPage() {
     const [email, setEmail] = useState("");
@@ -41,9 +40,9 @@ export default function SignInPage() {
 
     return (
         <All>
-            <div>
-                <img width={350} src={logo} alt="logo" />
-            </div>
+            <Img>
+                <img src={logo} alt="logo" />
+            </Img>
 
             <form onSubmit={submit}>
                 <Input>

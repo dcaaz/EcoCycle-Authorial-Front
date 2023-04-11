@@ -1,6 +1,15 @@
 import styled from "styled-components";
 import colors from "../StandardColors.js";
 
+export const Img = styled.div`
+    img{
+        width: 350px;
+        @media (max-width: 900px) {
+            width: 250px;
+        }
+    }
+`
+
 export const All = styled.div`
     display: flex;
     align-items: center;
@@ -18,13 +27,15 @@ export const All = styled.div`
 
 export const Input = styled.div`
     input {
-        width: 500px;
-        min-width: 325px;
-        height: 45px;  
+        width: 600px;
+        height: 50px;  
         border-radius: 5px;
         border-color: #D4D4D4;
         border-style: solid;
         margin-bottom: 6px;
+        @media (max-width: 900px){
+        width: 400px;
+        }
     }
     input::placeholder{
         color: #808080;
@@ -39,13 +50,15 @@ export const Button = styled.div`
     margin-top: 20px;
     button {
         background-color: ${colors.base};
-        width: 510px;
-        min-width: 330px;
-        height: 45px;  
+        width: 610px;
+        height: 60px;  
         border-radius: 4.64px;
         border-style: none;
         color: #FFFFFF;
         font-size: 27px;
+        @media (max-width: 900px){
+        width: 410px;
+        }
     }
 `
 
@@ -58,12 +71,14 @@ export const Choices = styled.div`
 export const Choice = styled.button`
     background-color: #808080;
     width: 210px;
-    min-width: 100px;
     height: 45px;  
     border-radius: 4.64px;
     border-style: none;
     color: #FFFFFF;
     font-size: 19px;
+    @media (max-width: 900px){
+        width: 150px;
+        }
 `
 
 export const Footer = styled.div`

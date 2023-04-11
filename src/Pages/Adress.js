@@ -94,6 +94,7 @@ export default function AdressPage() {
                         value={name}
                         required
                         disabled={disabled}
+                        autoComplete="nope"
                     />
                 </Input>
                 <Input>
@@ -105,6 +106,7 @@ export default function AdressPage() {
                         required
                         disabled={disabled}
                         onBlur={checkCEP}
+                        autoComplete="nope"
                     />
                 </Input>
                 <Input>
@@ -115,6 +117,7 @@ export default function AdressPage() {
                         value={street}
                         required
                         disabled={disabled}
+                        autoComplete="nope"
                     />
                 </Input>
                 <Input>
@@ -125,6 +128,7 @@ export default function AdressPage() {
                         value={number}
                         required
                         disabled={disabled}
+                        autoComplete="nope"
                     />
                 </Input>
                 <Input>
@@ -135,6 +139,7 @@ export default function AdressPage() {
                         value={complement}
                         required
                         disabled={disabled}
+                        autoComplete="nope"
                     />
                 </Input>
                 <Input>
@@ -145,6 +150,7 @@ export default function AdressPage() {
                         value={reference}
                         required
                         disabled={disabled}
+                        autoComplete="nope"
                     />
                 </Input>
                 <Input>
@@ -155,6 +161,7 @@ export default function AdressPage() {
                         value={neighborhood}
                         required
                         disabled={disabled}
+                        autoComplete="nope"
                     />
                 </Input>
                 <Input>
@@ -165,6 +172,7 @@ export default function AdressPage() {
                         value={city}
                         required
                         disabled={disabled}
+                        autoComplete="nope"
                     />
                 </Input>
                 <Input>
@@ -175,6 +183,7 @@ export default function AdressPage() {
                         value={state}
                         required
                         disabled={disabled}
+                        autoComplete="nope"
                     />
                 </Input>
                 <Choices>

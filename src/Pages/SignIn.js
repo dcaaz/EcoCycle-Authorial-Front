@@ -4,7 +4,7 @@ import logo from "../Images/logo.png";
 import { Footer, Input, Button, All, Img } from "../Style/Constant/User-Style.js"
 import { signIn } from "../Services/UserApi";
 import { AuthContext } from "../Context/Auth";
-import { ceps } from "../Services/Adress";
+import { ceps } from "../Services/AdressApi";
 import Swal from "sweetalert2";
 
 export default function SignInPage() {

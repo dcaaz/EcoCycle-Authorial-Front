@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { Input, All, Button, Choice, Choices } from "../Style/Constant/User-Style";
-import { adress, ceps } from "../Services/Adress";
+import { adress, ceps } from "../Services/AdressApi";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/Auth";
 import Swal from "sweetalert2";
@@ -75,7 +75,7 @@ export default function AdressPage() {
             street,
             number: parseInt(number),
             complement: complement[0].toUpperCase() + complement.substring(1),
-            reference,
+            reference: reference[0].toUpperCase() + reference.substring(1),
             city,
             state,
             neighborhood,
@@ -199,10 +199,14 @@ export default function AdressPage() {
                     />
                 </Input>
                 <Choices>
-                    <Choice onClick={() => recyclable(1)}>
+                    <Choice
+                        onClick={() => recyclable(1)}
+                        type='button'>
                         <h1>quero reciclar</h1>
                     </Choice>
-                    <Choice onClick={() => recyclable(2)}>
+                    <Choice
+                        onClick={() => recyclable(2)}
+                        type='button'>
                         <h1>quero coletar</h1>
                     </Choice>
                 </Choices>

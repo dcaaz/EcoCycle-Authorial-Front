@@ -20,7 +20,7 @@ export default function AdressPage() {
     const [disabled, setDisabled] = useState(false);
     const navigate = useNavigate();
 
-    const { token, setPoints } = useContext(AuthContext);
+    const { token, setPoints, setPoint } = useContext(AuthContext);
 
     function checkCEP(e) {
         const cepUser = e.target.value.replace(/\D+/g, ' '); //DO: regex substitui tudo
@@ -74,7 +74,8 @@ export default function AdressPage() {
             setDisabled(true);
             await adress(body, token);
             const data = await ceps(token);
-            setPoints(data);
+            setPoints(data.Users);
+            setPoint(data.User);
             navigate('/maps');
         } catch (error) {
             setDisabled(false);

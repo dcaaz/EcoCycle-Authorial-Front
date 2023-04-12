@@ -16,7 +16,8 @@ export default function SignInPage() {
     const {
         token,
         setToken,
-        setPoints
+        setPoints,
+        setPoint
     } = useContext(AuthContext);
 
     async function submit(event) {
@@ -30,7 +31,8 @@ export default function SignInPage() {
                 navigate('/adress');
             } else {
                 const data = await ceps(token);
-                setPoints(data);
+                setPoints(data.Users);
+                setPoint(data.User);
                 navigate('/maps');
             }
         } catch (err) {

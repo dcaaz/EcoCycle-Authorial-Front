@@ -7,7 +7,8 @@ import Header from '../Components/Header';
 
 export default function MapsPage() {
     const [markers, setMarkers] = useState([]);
-    const { points } = useContext(AuthContext);
+    const [position, setPosition] = useState([]);
+    const { points, point } = useContext(AuthContext);
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY
@@ -18,12 +19,18 @@ export default function MapsPage() {
         height: "100vh"
     };
 
-    const position = {
-        lat: -27.564684935820964,
-        lng: -48.622699337379494
-    };
-
     useEffect(() => {
+        const urlUser = `https://maps.googleapis.com/maps/api/geocode/json?address=${point.cep}&key=${process.env.REACT_APP_GOOGLE_API_KEY}`
+        const promise = axios.get(urlUser);
+        promise.then((res) => {
+            console.log("res", res.data.results[0].geometry.location);
+            setPosition(res.data.results[0].geometry.location);
+        })
+
+        promise.catch((err) => {
+            console.log("Deu errado no User");
+        })
+
         points.map((c) => {
             const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${c.cep}&key=${process.env.REACT_APP_GOOGLE_API_KEY}`
 
@@ -35,13 +42,13 @@ export default function MapsPage() {
             })
 
             promise.catch((err) => {
-                console.log("Deu errado");
+                console.log("Deu errado no Users");
             })
         })
     }, [points]);
 
 
-    return (
+return (
         <>
             <Header />
             {isLoaded ? (

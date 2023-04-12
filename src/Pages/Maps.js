@@ -3,7 +3,7 @@ import { All } from '../Style/Constant/User-Style';
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../Context/Auth';
-
+import Header from '../Components/Header';
 
 export default function MapsPage() {
     const [markers, setMarkers] = useState([]);
@@ -15,7 +15,7 @@ export default function MapsPage() {
 
     const containerStyle = {
         width: "100vw",
-        height: "50vh"
+        height: "100vh"
     };
 
     const position = {
@@ -42,7 +42,8 @@ export default function MapsPage() {
 
 
     return (
-        <All>
+        <>
+            <Header />
             {isLoaded ? (
                 <GoogleMap
                     mapContainerStyle={containerStyle}
@@ -66,7 +67,7 @@ export default function MapsPage() {
                 <></>
             )
             }
-        </All >
+        </>
     )
 }
 

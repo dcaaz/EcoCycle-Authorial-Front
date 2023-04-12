@@ -46,47 +46,49 @@ export default function SignInPage() {
     }
 
     return (
-        <All>
-            <Img>
-                <img src={logo} alt="logo" />
-            </Img>
+        <>
+            <All>
+                <Img>
+                    <img src={logo} alt="logo" />
+                </Img>
 
-            <form onSubmit={submit}>
-                <Input>
-                    <input
-                        type="email"
-                        placeholder=" email"
-                        onChange={(e) => setEmail(e.target.value)}
-                        value={email}
-                        required
-                        disabled={disabled}
-                    />
-                </Input>
-                <Input>
-                    <input
-                        type="password"
-                        placeholder=" senha"
-                        onChange={(e) => setPassword(e.target.value)}
-                        value={password}
-                        required
-                        disabled={disabled}
-                    />
-                </Input>
-                <Button>
-                    <button
-                        type="submit"
-                        disabled={disabled}
-                    >
-                        <h1>entrar</h1>
-                    </button>
-                </Button>
-            </form>
+                <form onSubmit={submit}>
+                    <Input>
+                        <input
+                            type="email"
+                            placeholder=" email"
+                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
+                            required
+                            disabled={disabled}
+                        />
+                    </Input>
+                    <Input>
+                        <input
+                            type="password"
+                            placeholder=" senha"
+                            onChange={(e) => setPassword(e.target.value)}
+                            value={password}
+                            required
+                            disabled={disabled}
+                        />
+                    </Input>
+                    <Button>
+                        <button
+                            type="submit"
+                            disabled={disabled}
+                        >
+                            <h1>entrar</h1>
+                        </button>
+                    </Button>
+                </form>
 
-            <Footer>
-                <Link to="/signup">
-                    <h1>Não tem uma conta? Cadastre-se!</h1>
-                </Link>
-            </Footer>
-        </All>
+                <Footer>
+                    <Link to="/signup">
+                        <h1>Não tem uma conta? Cadastre-se!</h1>
+                    </Link>
+                </Footer>
+            </All>
+        </>
     )
 }

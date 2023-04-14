@@ -22,7 +22,7 @@
     "react-toastify": "^9.1.2",
     "styled-components": "^5.3.6",
     "sweetalert2": "^11.7.3",
-    "web-vitals": "^2.1.4"
+    "whatsapp-web.js": "^1.19.5"
   },
   "scripts": {
     "start": "react-scripts start",

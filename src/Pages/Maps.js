@@ -4,6 +4,7 @@ import axios from 'axios';
 import { AuthContext } from '../Context/Auth';
 import Header from '../Components/Header';
 import styled from 'styled-components';
+import whatsimg from "../Images/whats.png"
 
 //const google = window.google;
 
@@ -12,6 +13,7 @@ export default function MapsPage() {
     const [position, setPosition] = useState([]);
     const [activeMarker, setActiveMarker] = useState(null);
     const { points, point } = useContext(AuthContext);
+
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY
@@ -23,9 +25,11 @@ export default function MapsPage() {
     };
 
 
-    function whatsApp(m) {
-        console.log("cheguei");
-        //https://wa.me/55XXXXXXXXXXX?text=Tenho%20interesse%20em%20comprar%20seu%20carro
+    function whatsApp(data) {
+        const number = parseInt(data);
+        const msg = "Olá, vim através do EcoCycle";
+        const url = `https://wa.me/${number}?text=${msg}`;
+        window.open(url, '_blank').focus();
     };
 
     const svgMarker = {
@@ -72,14 +76,16 @@ export default function MapsPage() {
             const promise = axios.get(url);
 
             promise.then((res) => {
-                const teste = {
+                const newMarker = {
                     location: {
                         lat: parseFloat(res.data.results[0].geometry.location.lat),
                         lng: parseFloat(res.data.results[0].geometry.location.lng)
                     },
-                    name: c.name
+                    name: c.name,
+                    neighborhood: c.neighborhood,
+                    phone: c.phone
                 };
-                setMarkers((marker) => [...marker, teste]);
+                setMarkers((marker) => [...marker, newMarker]);
             })
 
             promise.catch((err) => {
@@ -114,8 +120,9 @@ export default function MapsPage() {
                                 <InfoWindow onCloseClick={() => setActiveMarker(null)}>
                                     <MarkerStyled>
                                         <h1>Nome: {m.name}</h1>
-                                        <h1>Ponto de coleta: {m.name}</h1>
-                                        <h1 onClick={() => whatsApp(m)}>Contato: {m.name} </h1>
+                                        <h1>Ponto de coleta: {m.neighborhood}</h1>
+                                        <h1>Entre em contato:</h1>
+                                        <img onClick={() => whatsApp(m.phone)} src={whatsimg} alt='Icone whatsApp'/>
                                     </MarkerStyled>
                                 </InfoWindow>
                             ) : null}
@@ -133,6 +140,15 @@ export default function MapsPage() {
 }
 
 const MarkerStyled = styled.div`
-    width: 100px;
+    width: 200px;
     height: 100px;
+    h1{
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-size: 15px;
+        margin-bottom: 3px;
+    }
+    img{
+        width: 20%;
+        height: 30%;
+    }
 `

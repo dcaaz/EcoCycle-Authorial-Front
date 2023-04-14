@@ -21,3 +21,4 @@ Quero deixar registrado que a ideia central não é criticar o sistema público 
 - Framer-motion
 - SweetAlert2
 - Mui/material
+- WhatsApp-Web-Js

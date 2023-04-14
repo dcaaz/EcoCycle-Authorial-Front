@@ -16,6 +16,7 @@ export default function AdressPage() {
     const [neighborhood, setNeighborhood] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
+    const [phone, setPhone] = useState("");
     const [profile, setProfile] = useState(false);
     const [disabled, setDisabled] = useState(false);
     const navigate = useNavigate();
@@ -55,6 +56,11 @@ export default function AdressPage() {
             })
     }
 
+    function checkPhone(e){
+        const phoneUser = e.target.value.replace(/\D+/g, "");
+        setPhone(phoneUser);
+    }
+
     async function submit(event) {
         event.preventDefault();
         const body = {
@@ -67,6 +73,7 @@ export default function AdressPage() {
             city,
             state,
             neighborhood,
+            phone,
             profile
         }
 
@@ -78,6 +85,7 @@ export default function AdressPage() {
             setPoint(data.User);
             navigate('/maps');
         } catch (error) {
+            console.log("error", error);
             setDisabled(false);
             alert('Não foi possível fazer o cadastro do endereço!');
         }
@@ -184,6 +192,18 @@ export default function AdressPage() {
                         value={state}
                         required
                         disabled={disabled}
+                        autoComplete="nope"
+                    />
+                </Input>
+                <Input>
+                    <input
+                        type="text"
+                        placeholder=" contato whatsapp"
+                        onChange={(e) => setPhone(e.target.value)}
+                        value={phone}
+                        required
+                        disabled={disabled}
+                        onBlur={checkPhone}
                         autoComplete="nope"
                     />
                 </Input>

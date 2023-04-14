@@ -1,8 +1,6 @@
 import api from './Api';
 
 export async function adress(body, token) {
-  console.log("cheguei aqui!");
-  console.log("body", body)
   const response = await api.post('/adress', body, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -12,7 +10,6 @@ export async function adress(body, token) {
 }
 
 export async function ceps(token) {
-  console.log("token", token);
   const response = await api.get('/adress/cep', {
     headers: {
       Authorization: `Bearer ${token}`,

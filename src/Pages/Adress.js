@@ -1,10 +1,11 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Input, All, Button, Choice, Choices } from "../Style/Constant/User-Style";
 import { adress, ceps } from "../Services/AdressApi";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/Auth";
 import Swal from "sweetalert2";
 import { Switch } from "@mui/material";
+import axios from "axios";
 
 export default function AdressPage() {
     const [name, setName] = useState("");
@@ -22,7 +23,7 @@ export default function AdressPage() {
     const navigate = useNavigate();
 
     const { token, setPoints, setPoint } = useContext(AuthContext);
-   
+
     function checkCEP(e) {
         const cepUser = e.target.value.replace(/\D+/g, "");
         fetch(`https://viacep.com.br/ws/${cepUser}/json/`)
@@ -56,9 +57,49 @@ export default function AdressPage() {
             })
     }
 
-    function checkPhone(e){
+    function CheckPhone(e) {
         const phoneUser = e.target.value.replace(/\D+/g, "");
-        setPhone(phoneUser);
+        console.log("instance", process.env.REACT_APP_INSTANCE_API_ULTRAMSG);
+        const instance = process.env.REACT_APP_INSTANCE_API_ULTRAMSG; //DO não reconhece .env
+        let params = {
+            "token": process.env.REACT_APP_TOKEN_API_ULTRAMSG,
+            "chatId": `${phoneUser}`,
+            "nocache": ""
+        };
+
+        var config = {
+            method: 'get',
+            url: `https://api.ultramsg.com/${instance}/contacts/check`,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            params: params
+        };
+
+        const promise = axios(config);
+        promise.then((res) => {
+            if (res.data.status === 'valid') {
+                setPhone(phoneUser);
+            } else {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'warning',
+                    title: "Insira um número com WhatApp válido, não esqueça do DDD do seu estado!",
+                    showConfirmButton: false,
+                    timer: 5000
+                })
+            }
+        })
+
+        promise.catch((err) => {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'warning',
+                title: "Estranho! Algum erro aconteceu com seu telefone. Certifique-se que você inseriu os dados corretamente",
+                showConfirmButton: false,
+                timer: 5000
+            })
+        })
     }
 
     async function submit(event) {
@@ -84,8 +125,7 @@ export default function AdressPage() {
             setPoints(data.Users);
             setPoint(data.User);
             navigate('/maps');
-        } catch (error) {
-            console.log("error", error);
+        } catch (err) {
             setDisabled(false);
             alert('Não foi possível fazer o cadastro do endereço!');
         }
@@ -203,7 +243,7 @@ export default function AdressPage() {
                         value={phone}
                         required
                         disabled={disabled}
-                        onBlur={checkPhone}
+                        onBlur={CheckPhone}
                         autoComplete="nope"
                     />
                 </Input>

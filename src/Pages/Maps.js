@@ -122,7 +122,7 @@ export default function MapsPage() {
                                         <h1>Nome: {m.name}</h1>
                                         <h1>Ponto de coleta: {m.neighborhood}</h1>
                                         <h1>Entre em contato:</h1>
-                                        <img onClick={() => whatsApp(m.phone)} src={whatsimg} alt='Icone whatsApp'/>
+                                        <img onClick={() => whatsApp(m.phone)} src={whatsimg} alt='Icone whatsApp' />
                                     </MarkerStyled>
                                 </InfoWindow>
                             ) : null}

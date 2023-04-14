@@ -14,7 +14,6 @@ export default function SignInPage() {
     const navigate = useNavigate();
 
     const {
-        token,
         setToken,
         setPoints,
         setPoint

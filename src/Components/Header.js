@@ -15,7 +15,6 @@ export default function Header() { //DO deixar transparente e sobrepondo o mapa
     }
 
     function outfunc() {
-        console.log("cheguei 1")
         setToken();
         navigate('/');
     }

@@ -21,9 +21,9 @@ export default function AdressPage() {
     const navigate = useNavigate();
 
     const { token, setPoints, setPoint } = useContext(AuthContext);
-
+   
     function checkCEP(e) {
-        const cepUser = e.target.value.replace(/\D+/g, ' '); //DO: regex substitui tudo
+        const cepUser = e.target.value.replace(/\D+/g, "");
         fetch(`https://viacep.com.br/ws/${cepUser}/json/`)
             .then(res => res.json())
             .then(data => {
@@ -100,7 +100,7 @@ export default function AdressPage() {
                 </Input>
                 <Input>
                     <input
-                        type="number"
+                        type="text"
                         placeholder=" cep"
                         onChange={(e) => setCep(e.target.value)}
                         value={cep}

@@ -1,13 +1,16 @@
-import { GoogleMap, useJsApiLoader, MarkerF } from '@react-google-maps/api';
-import { All } from '../Style/Constant/User-Style';
+import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../Context/Auth';
 import Header from '../Components/Header';
+import styled from 'styled-components';
+
+//const google = window.google;
 
 export default function MapsPage() {
     const [markers, setMarkers] = useState([]);
     const [position, setPosition] = useState([]);
+    const [activeMarker, setActiveMarker] = useState(null);
     const { points, point } = useContext(AuthContext);
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
@@ -19,12 +22,44 @@ export default function MapsPage() {
         height: "100vh"
     };
 
+
+    function whatsApp(m) {
+        console.log("cheguei");
+        //https://wa.me/55XXXXXXXXXXX?text=Tenho%20interesse%20em%20comprar%20seu%20carro
+    };
+
+    const svgMarker = {
+        path: "M-1.547 12l6.563-6.609-1.406-1.406-5.156 5.203-2.063-2.109-1.406 1.406zM0 0q2.906 0 4.945 2.039t2.039 4.945q0 1.453-0.727 3.328t-1.758 3.516-2.039 3.070-1.711 2.273l-0.75 0.797q-0.281-0.328-0.75-0.867t-1.688-2.156-2.133-3.141-1.664-3.445-0.75-3.375q0-2.906 2.039-4.945t4.945-2.039z",
+        fillColor: "purple",
+        fillOpacity: 0.6,
+        strokeWeight: 0,
+        rotation: 0,
+        scale: 2,
+        //labelOrigin: new google.maps.Point(0, 27)
+    };
+
+    /*  const svgMarker = {
+         url: "https://cdn-icons-png.flaticon.com/512/37/37786.png",
+         size: { width: 50, height: -30 },
+         anchor: { x: 5, y: 0},
+         scaledSize: { width: 50, height: 50}
+     }; */
+
+    const handleActiveMarker = (marker) => {
+        if (marker === activeMarker) {
+            return;
+        }
+        setActiveMarker(marker);
+    };
+
     useEffect(() => {
         const urlUser = `https://maps.googleapis.com/maps/api/geocode/json?address=${point.cep}&key=${process.env.REACT_APP_GOOGLE_API_KEY}`
         const promise = axios.get(urlUser);
         promise.then((res) => {
-            console.log("res", res.data.results[0].geometry.location);
-            setPosition(res.data.results[0].geometry.location);
+            setPosition({
+                lat: parseFloat(res.data.results[0].geometry.location.lat),
+                lng: parseFloat(res.data.results[0].geometry.location.lng)
+            });
         })
 
         promise.catch((err) => {
@@ -37,7 +72,13 @@ export default function MapsPage() {
             const promise = axios.get(url);
 
             promise.then((res) => {
-                const teste = { location: res.data.results[0].geometry.location, name: c.name };
+                const teste = {
+                    location: {
+                        lat: parseFloat(res.data.results[0].geometry.location.lat),
+                        lng: parseFloat(res.data.results[0].geometry.location.lng)
+                    },
+                    name: c.name
+                };
                 setMarkers((marker) => [...marker, teste]);
             })
 
@@ -47,28 +88,41 @@ export default function MapsPage() {
         })
     }, [points]);
 
-
-return (
+    return (
         <>
             <Header />
             {isLoaded ? (
                 <GoogleMap
                     mapContainerStyle={containerStyle}
                     center={position}
-                    zoom={19}
+                    zoom={13}
                 >
                     {markers.map((m, i) => (
-                        <MarkerF
+                        <Marker
+                            onClick={() => handleActiveMarker(i)}
                             key={i}
                             position={m.location}
-                            label="Testando"
+                            icon={svgMarker}
                             options={{
                                 label: {
-                                    text: `${m.name}`
-                                },
+                                    text: `${m.name}`,
+                                    fontSize: "20px"
+                                }
                             }}
-                        />
+                        >
+                            {activeMarker === i ? (
+                                <InfoWindow onCloseClick={() => setActiveMarker(null)}>
+                                    <MarkerStyled>
+                                        <h1>Nome: {m.name}</h1>
+                                        <h1>Ponto de coleta: {m.name}</h1>
+                                        <h1 onClick={() => whatsApp(m)}>Contato: {m.name} </h1>
+                                    </MarkerStyled>
+                                </InfoWindow>
+                            ) : null}
+                        </Marker>
                     ))}
+
+
                 </GoogleMap>
             ) : (
                 <></>
@@ -78,3 +132,7 @@ return (
     )
 }
 
+const MarkerStyled = styled.div`
+    width: 100px;
+    height: 100px;
+`

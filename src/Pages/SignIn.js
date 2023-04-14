@@ -24,13 +24,13 @@ export default function SignInPage() {
         event.preventDefault();
         try {
             setDisabled(true);
-            const data = await signIn(email, password);
-            setToken(data.token);
+            const res = await signIn(email, password);
+            await setToken(res.token);
 
-            if (data.adress === true) {
+            if (res.adress === true) {
                 navigate('/adress');
             } else {
-                const data = await ceps(token);
+                const data = await ceps(res.token);
                 setPoints(data.Users);
                 setPoint(data.User);
                 navigate('/maps');

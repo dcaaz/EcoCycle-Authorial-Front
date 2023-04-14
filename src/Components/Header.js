@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Context/Auth";
 import { useNavigate } from "react-router-dom";
 
-export default function Header() {
+export default function Header() { //DO deixar transparente e sobrepondo o mapa
 
     const navigate = useNavigate()
     const { setToken } = useContext(AuthContext);

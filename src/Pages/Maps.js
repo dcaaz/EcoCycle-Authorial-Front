@@ -4,9 +4,8 @@ import axios from 'axios';
 import { AuthContext } from '../Context/Auth';
 import Header from '../Components/Header';
 import styled from 'styled-components';
-import whatsimg from "../Images/whats.png"
 
-//const google = window.google;
+//let google = window.google;
 
 export default function MapsPage() {
     const [markers, setMarkers] = useState([]);
@@ -83,7 +82,8 @@ export default function MapsPage() {
                     },
                     name: c.name,
                     neighborhood: c.neighborhood,
-                    phone: c.phone
+                    phone: c.phone,
+                    profile: c.profile
                 };
                 setMarkers((marker) => [...marker, newMarker]);
             })
@@ -111,7 +111,7 @@ export default function MapsPage() {
                             icon={svgMarker}
                             options={{
                                 label: {
-                                    text: `${m.name}`,
+                                    text: "EcoCycle",
                                     fontSize: "20px"
                                 }
                             }}
@@ -119,10 +119,10 @@ export default function MapsPage() {
                             {activeMarker === i ? (
                                 <InfoWindow onCloseClick={() => setActiveMarker(null)}>
                                     <MarkerStyled>
-                                        <h1>Nome: {m.name}</h1>
-                                        <h1>Ponto de coleta: {m.neighborhood}</h1>
-                                        <h1>Entre em contato:</h1>
-                                        <img onClick={() => whatsApp(m.phone)} src={whatsimg} alt='Icone whatsApp' />
+                                        <h1>{m.profile === true ? "Deseja coletar" : "Deseja reciclar"}</h1>
+                                        <h2>Nome: {m.name}</h2>
+                                        <h2>Região: {m.neighborhood}</h2>
+                                        <h1 onClick={() => whatsApp(m.phone)}>Entre em contato: Clique aqui</h1>
                                     </MarkerStyled>
                                 </InfoWindow>
                             ) : null}
@@ -140,15 +140,10 @@ export default function MapsPage() {
 }
 
 const MarkerStyled = styled.div`
-    width: 200px;
-    height: 100px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 15px;
+    margin-bottom: 3px;
     h1{
-        font-family: 'IBM Plex Sans', sans-serif;
-        font-size: 15px;
-        margin-bottom: 3px;
-    }
-    img{
-        width: 20%;
-        height: 30%;
+       font-weight: 600;
     }
 `

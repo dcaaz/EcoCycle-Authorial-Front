@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { Input, All, Button, Choice, Choices } from "../Style/Constant/User-Style";
 import { adress, ceps } from "../Services/AdressApi";
 import { useNavigate } from "react-router-dom";
@@ -59,8 +59,7 @@ export default function AdressPage() {
 
     function CheckPhone(e) {
         const phoneUser = e.target.value.replace(/\D+/g, "");
-        console.log("instance", process.env.REACT_APP_INSTANCE_API_ULTRAMSG);
-        const instance = process.env.REACT_APP_INSTANCE_API_ULTRAMSG; //DO não reconhece .env
+        const instance = process.env.REACT_APP_INSTANCE_API_ULTRAMSG;
         let params = {
             "token": process.env.REACT_APP_TOKEN_API_ULTRAMSG,
             "chatId": `${phoneUser}`,

@@ -28,11 +28,12 @@ export default function SignUpPage() {
                 await signUp(email, password);
                 navigate('/signin');
             } catch (err) {
+                console.log("err", err);
                 setDisabled(false);
                 Swal.fire({
                     position: 'top-end',
                     icon: 'warning',
-                    title: (`${err.response.data}`),
+                    title: "Tente novamente!",
                     showConfirmButton: false,
                     timer: 2000
                 })

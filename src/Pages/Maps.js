@@ -5,8 +5,6 @@ import { AuthContext } from '../Context/Auth';
 import Header from '../Components/Header';
 import styled from 'styled-components';
 
-//let google = window.google;
-
 export default function MapsPage() {
     const [markers, setMarkers] = useState([]);
     const [position, setPosition] = useState([]);
@@ -37,8 +35,7 @@ export default function MapsPage() {
         fillOpacity: 0.6,
         strokeWeight: 0,
         rotation: 0,
-        scale: 2,
-        //labelOrigin: new google.maps.Point(0, 27)
+        scale: 2
     };
 
     /*  const svgMarker = {
@@ -66,7 +63,7 @@ export default function MapsPage() {
         })
 
         promise.catch((err) => {
-            console.log("Deu errado no User");
+            console.log("Erro urlUser", err);
         })
 
         points.map((c) => {
@@ -89,7 +86,7 @@ export default function MapsPage() {
             })
 
             promise.catch((err) => {
-                console.log("Deu errado no Users");
+                console.log("Erro urlUsers", err);
             })
         })
     }, [points]);
@@ -101,7 +98,7 @@ export default function MapsPage() {
                 <GoogleMap
                     mapContainerStyle={containerStyle}
                     center={position}
-                    zoom={13}
+                    zoom={15}
                 >
                     {markers.map((m, i) => (
                         <Marker
@@ -111,7 +108,7 @@ export default function MapsPage() {
                             icon={svgMarker}
                             options={{
                                 label: {
-                                    text: "EcoCycle",
+                                    text: `Eco - ${m.name}`,
                                     fontSize: "20px"
                                 }
                             }}

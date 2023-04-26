@@ -1,6 +1,6 @@
 services:
   app_react:
-    build: ./front-end
+    build: .
     container_name: app_react
     volumes:
       - build_react:/var/www/html
@@ -14,6 +14,11 @@ services:
       - build_react:/var/www/html
     depends_on:
       - app_react
+    
+networks:
+  recyclable-backend_default:
+    name: recyclable-backend_default
+    external: true
 
 volumes:
   build_react:

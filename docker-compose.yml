@@ -2,16 +2,18 @@ services:
   app_react:
     build: .
     container_name: app_react
+    image: react-front
     volumes:
       - build_react:/var/www/html
 
   nginx:
     build: ./nginx
     container_name: nginx
+    image: nginx-front
     networks:
       - eco-network
     ports:
-      - 80:80
+      - 8080:80
     volumes:
       - build_react:/var/www/html
     depends_on:

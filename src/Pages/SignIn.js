@@ -86,7 +86,7 @@ export default function SignInPage() {
 
                 <Footer>
                     <Link to="/signup">
-                        <h1>Não tem uma conta? Cadastre-se, teste!</h1>
+                        <h1>Não tem uma conta? Cadastre-se, teste 2!</h1>
                     </Link>
                 </Footer>
             </All>

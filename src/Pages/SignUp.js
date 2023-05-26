@@ -15,6 +15,7 @@ export default function SignUpPage() {
     async function submit(event) {
         event.preventDefault();
         if (password !== confirmPassword) {
+            console.log(password, confirmPassword)
             Swal.fire({
                 position: 'top-end',
                 icon: 'warning',
@@ -84,7 +85,7 @@ export default function SignUpPage() {
                         type="submit"
                         disabled={disabled}
                     >
-                        <h1>entrar</h1>
+                        <h1>cadastrar</h1>
                     </button>
                 </Button>
             </form>
